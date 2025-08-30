@@ -6,11 +6,11 @@ import { fetchPosts } from "@/services/postsService";
 import Card from "@/components/ui/Card";
 import { useState } from "react";
 import useDebounce from "@/hooks/useDebounce";
+import useDelayedLoading from "@/hooks/useDelayedLoading";
 import { POSTS_URL } from "@/utils/constants";
 
 export default function Posts() {
     const [searchTerm, setSearchTerm] = useState<string>("");
-
     const debouncedUserId = useDebounce(searchTerm, 500);
 
     const url = debouncedUserId
@@ -18,6 +18,8 @@ export default function Posts() {
         : POSTS_URL;
 
     const { data: posts, error, isLoading } = useSWR<Post[]>(url, fetchPosts);
+
+    const showLoading = useDelayedLoading(isLoading, 500);
 
     return (
         <main className="max-w-5xl mx-auto p-4">
@@ -33,14 +35,20 @@ export default function Posts() {
                 />
             </div>
 
-            {isLoading && <p>Cargando posts...</p>}
+            {showLoading && (
+                <p className="text-yellow-600">
+                    Las solicitudes están tardando más de lo esperado...
+                </p>
+            )}
+
             {error && <p className="text-red-500">{error.message}</p>}
 
             <div className="grid gap-4 md:grid-cols-2">
-                {posts?.map((post) => (
+                {posts?.map(post => (
                     <Card key={post.id} post={post} />
                 ))}
             </div>
         </main>
     );
+
 }
