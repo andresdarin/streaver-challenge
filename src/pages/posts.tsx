@@ -6,6 +6,7 @@ import { fetchPosts } from "@/services/postsService";
 import Card from "@/components/ui/Card";
 import { useState } from "react";
 import useDebounce from "@/hooks/useDebounce";
+import { POSTS_URL } from "@/utils/constants";
 
 export default function Posts() {
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -13,8 +14,8 @@ export default function Posts() {
     const debouncedUserId = useDebounce(searchTerm, 500);
 
     const url = debouncedUserId
-        ? `https://jsonplaceholder.typicode.com/posts?userId=${debouncedUserId}`
-        : "https://jsonplaceholder.typicode.com/posts";
+        ? `${POSTS_URL}?userId=${debouncedUserId}`
+        : POSTS_URL;
 
     const { data: posts, error, isLoading } = useSWR<Post[]>(url, fetchPosts);
 
