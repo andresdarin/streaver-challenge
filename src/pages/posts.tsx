@@ -1,5 +1,4 @@
 "use client";
-
 import useSWR from "swr";
 import { Post } from "@/types/post";
 import { fetchPosts } from "@/services/postsService";
@@ -35,10 +34,6 @@ export default function Posts() {
                 />
             </div>
 
-            <div className="bg-pink-500 text-white p-6 rounded-xl">
-                Si esto se ve rosado, Tailwind funciona en Pages Router
-            </div>
-
             {showLoading && (
                 <p className="text-yellow-600">
                     Las solicitudes están tardando más de lo esperado...
@@ -47,13 +42,8 @@ export default function Posts() {
 
             {error && <p className="text-red-500">{error.message}</p>}
 
-            <div className="grid gap-4 md:grid-cols-2">
-                <div className="grid gap-4 md:grid-cols-2 bg-pink-500">
-                    {posts?.map(post => (
-                        <Card key={post.id} post={post} />
-                    ))}
-                </div>
-                <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 ">
+                <div className="grid gap-4 md:grid-cols-3 ">
                     {posts?.map(post => (
                         <Card key={post.id} post={post} />
                     ))}

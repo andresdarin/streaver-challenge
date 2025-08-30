@@ -1,19 +1,15 @@
 import { Post } from "../../types/post";
 
-interface Props {
+interface PostCardProps {
     post: Post;
 }
 
-export default function Card({ post }: Props) {
+export default function Card({ post }: PostCardProps) {
     return (
         <div className="border rounded p-4 shadow hover:shadow-lg transition">
-            <h2 className="font-semibold text-lg">{post.title}</h2>
-            <p className="text-gray-700">{post.body}</p>
-            <p className="text-sm text-gray-500 mt-2">User ID: {post.userId}</p>
-
-            <div className="bg-pink-500 text-white p-6 rounded-xl">
-                Si esto se ve rosado, Tailwind funciona en Pages Router
-            </div>
+            <p className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 mb-2">User ID: {post.userId}</p>
+            <h2 className="font-semibold tracking-tight text-lg leading-snug group-hover:text-primary transition-colors">{post.title}</h2>
+            <p className="text-muted-foreground text-sm leading-relaxed">{post.body}</p>
         </div>
 
     );
