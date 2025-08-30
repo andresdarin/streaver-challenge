@@ -10,4 +10,10 @@ export class PostsAPI {
         if (!res.ok) throw new Error("Error al traer posts");
         return res.json();
     }
+
+    async getPostsByUserId(userId: string): Promise<Post[]> {
+        const res = await fetch(`${this.baseUrl}/posts?userId=${userId}`);
+        if (!res.ok) throw new Error("Error al filtrar posts");
+        return res.json();
+    }
 }
