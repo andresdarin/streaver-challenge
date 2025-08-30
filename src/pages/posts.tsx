@@ -1,34 +1,19 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import useSWR from "swr";
 import { Post } from "@/types/post";
-import { PostsAPI } from "@/services/postsService";
+import { fetchPosts } from "@/services/postsService";
 import Card from "@/components/ui/Card";
+import { useState } from "react";
 
 export default function Posts() {
-    const [posts, setPosts] = useState<Post[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [userIdFilter, setUserIdFilter] = useState<string>(""); // Estado para el filtro de cuando userId cambia
+    const [userIdFilter, setUserIdFilter] = useState<string>("");
 
-    const api = new PostsAPI();
+    const url = userIdFilter
+        ? `https://jsonplaceholder.typicode.com/posts?userId=${userIdFilter}`
+        : "https://jsonplaceholder.typicode.com/posts";
 
-    useEffect(() => {
-        setLoading(true);
-        setError(null);
-
-        const fetchPosts = userIdFilter
-            ? api.getPostsByUserId(userIdFilter)
-            : api.getAllPosts();
-
-        fetchPosts
-            .then((data) => {
-                setPosts(data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setError(err.message || "Error al cargar posts");
-                setLoading(false);
-            });
-    }, [userIdFilter]); // refetch cada vez que cambia el filtro
+    const { data: posts, error, isLoading } = useSWR<Post[]>(url, fetchPosts);
 
     return (
         <main className="max-w-5xl mx-auto p-4">
@@ -44,11 +29,11 @@ export default function Posts() {
                 />
             </div>
 
-            {loading && <p>Cargando posts...</p>}
-            {error && <p className="text-red-500">{error}</p>}
+            {isLoading && <p>Cargando posts...</p>}
+            {error && <p className="text-red-500">{error.message}</p>}
 
             <div className="grid gap-4 md:grid-cols-2">
-                {posts.map((post) => (
+                {posts?.map((post) => (
                     <Card key={post.id} post={post} />
                 ))}
             </div>

@@ -17,3 +17,10 @@ export class PostsAPI {
         return res.json();
     }
 }
+
+// Fetcher para SWR
+export const fetchPosts = async (url: string): Promise<Post[]> => {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Error al traer posts");
+    return res.json();
+};
