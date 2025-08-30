@@ -4,9 +4,11 @@ import useSWR from "swr";
 import { Post } from "@/types/post";
 import { fetchPosts } from "@/services/postsService";
 import Card from "@/components/ui/Card";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import debounce from "lodash.debounce";
 
 export default function Posts() {
+    const [searchTerm, setSearchTerm] = useState<string>("");
     const [userIdFilter, setUserIdFilter] = useState<string>("");
 
     const url = userIdFilter
@@ -14,6 +16,21 @@ export default function Posts() {
         : "https://jsonplaceholder.typicode.com/posts";
 
     const { data: posts, error, isLoading } = useSWR<Post[]>(url, fetchPosts);
+
+    // Función que actualiza userIdFilter
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+        debouncedUpdate(event.target.value);
+    };
+
+    // Debounce: espera 500ms antes de actualizar el filtro real
+    const debouncedUpdate = useMemo(
+        () =>
+            debounce((value: string) => {
+                setUserIdFilter(value);
+            }, 500),
+        []
+    );
 
     return (
         <main className="max-w-5xl mx-auto p-4">
@@ -23,8 +40,8 @@ export default function Posts() {
                 <input
                     type="number"
                     placeholder="Filtrar por userId"
-                    value={userIdFilter}
-                    onChange={(e) => setUserIdFilter(e.target.value)}
+                    value={searchTerm}
+                    onChange={handleChange}
                     className="border rounded p-2 w-full md:w-1/3"
                 />
             </div>
