@@ -4,33 +4,19 @@ import useSWR from "swr";
 import { Post } from "@/types/post";
 import { fetchPosts } from "@/services/postsService";
 import Card from "@/components/ui/Card";
-import { useMemo, useState } from "react";
-import debounce from "lodash.debounce";
+import { useState } from "react";
+import useDebounce from "@/hooks/useDebounce";
 
 export default function Posts() {
     const [searchTerm, setSearchTerm] = useState<string>("");
-    const [userIdFilter, setUserIdFilter] = useState<string>("");
 
-    const url = userIdFilter
-        ? `https://jsonplaceholder.typicode.com/posts?userId=${userIdFilter}`
+    const debouncedUserId = useDebounce(searchTerm, 500);
+
+    const url = debouncedUserId
+        ? `https://jsonplaceholder.typicode.com/posts?userId=${debouncedUserId}`
         : "https://jsonplaceholder.typicode.com/posts";
 
     const { data: posts, error, isLoading } = useSWR<Post[]>(url, fetchPosts);
-
-    // Función que actualiza userIdFilter
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(event.target.value);
-        debouncedUpdate(event.target.value);
-    };
-
-    // Debounce: espera 500ms antes de actualizar el filtro real
-    const debouncedUpdate = useMemo(
-        () =>
-            debounce((value: string) => {
-                setUserIdFilter(value);
-            }, 500),
-        []
-    );
 
     return (
         <main className="max-w-5xl mx-auto p-4">
@@ -41,7 +27,7 @@ export default function Posts() {
                     type="number"
                     placeholder="Filtrar por userId"
                     value={searchTerm}
-                    onChange={handleChange}
+                    onChange={e => setSearchTerm(e.target.value)}
                     className="border rounded p-2 w-full md:w-1/3"
                 />
             </div>
