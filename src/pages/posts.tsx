@@ -21,7 +21,7 @@ export default function Posts() {
     const showLoading = useDelayedLoading(isLoading, 500);
 
     return (
-        <main className="max-w-5xl mx-auto p-4">
+        <main className="max-w-5xl mx-auto p-4 ">
             <h1 className="text-7xl font-bold mb-6 text-center">Posts</h1>
 
             <div className="mb-8 p-4 flex justify-center">
@@ -76,9 +76,15 @@ export default function Posts() {
 
             {error && <p className="text-red-500 text-center mb-4">{error.message}</p>}
 
-            <div className="max-w-full max-h-32 grid gap-6 md:grid-cols-3">
-                {posts?.map(post => (
-                    <Card key={post.id} post={post} />
+            {/* Masonry Grid Layout */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                {posts?.map((post, index) => (
+                    <div
+                        key={post.id}
+                        className="break-inside-avoid mb-6"
+                    >
+                        <Card post={post} />
+                    </div>
                 ))}
             </div>
         </main>

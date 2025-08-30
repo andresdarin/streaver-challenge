@@ -6,8 +6,21 @@ interface PostCardProps {
 }
 
 export default function Card({ post }: PostCardProps) {
+
+
+    // Diferentes colores de fondo para hacer más visual
+    const getCardColor = (postId: number) => {
+        const colors = [
+            'bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200',
+            'bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200',
+            'bg-gradient-to-br from-green-50 to-green-100 border-green-200',
+            'bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200',
+            'bg-gradient-to-br from-pink-50 to-pink-100 border-pink-200',
+        ];
+        return colors[postId % colors.length];
+    };
     return (
-        <div className="border rounded p-4 shadow hover:shadow-lg transition">
+        <div className={`border rounded p-4 shadow hover:shadow-lg transition ${getCardColor(post.id)} cursor-pointer group`}>
             <p className="inline-flex items-center gap-1 bg-gray-200 rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-gray-300 mb-2">
                 <User className="w-3 h-3" /> User {post.userId}
             </p>
