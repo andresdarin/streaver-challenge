@@ -31,7 +31,7 @@ export default function Posts() {
                 </p>
 
 
-                <form className="w-full p-4 flex justify-center">
+                <form className="p-4 flex justify-center">
                     <label htmlFor="user-search" className="sr-only">Filtrar por userId</label>
                     <input
                         type="number"
@@ -39,17 +39,25 @@ export default function Posts() {
                         placeholder="Filtrar por userId..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full p-4 text-sm text-gray-200 placeholder-gray-400 bg-gray-250/50 border rounded-2xl border-purple-400 focus:text-gray-900 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 hover:brightness-110"
+                        className="w-full p-4 text-sm text-gray-500 placeholder-gray-400 bg-gray-250/50 border rounded-2xl border-purple-400 focus:text-gray-900 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 hover:brightness-110"
                     />
                 </form>
 
+                {/* Mensaje cuando no hay posts */}
                 {!isLoading && posts && posts.length === 0 && (
-                    <p className="text-center text-red-500 dark:text-red-400 mt-2 font-medium">
-                        {searchTerm
-                            ? "No se encontraron posts para este usuario."
-                            : "No hay posts disponibles."}
-                    </p>
+                    <>
+                        {debouncedUserId ? (
+                            <p className="w-full pb-3 text-center text-red-500 dark:text-red-400 mt-2 font-medium">
+                                No se encontraron posts para este usuario.
+                            </p>
+                        ) : (
+                            <p className="w-full pb-3 text-center text-red-500 dark:text-red-400 mt-2 font-medium">
+                                No hay posts disponibles.
+                            </p>
+                        )}
+                    </>
                 )}
+
 
                 {posts && posts.length > 0 && (
                     <p className="text-center text-gray-900 dark:text-gray-300 mt-2 font-medium">
@@ -71,7 +79,7 @@ export default function Posts() {
                 {posts?.map((post, index) => (
                     <div
                         key={post.id}
-                        className="break-inside-avoid mb-6"
+                        className="break-inside-avoid"
                     >
                         <Card post={post} />
                     </div>

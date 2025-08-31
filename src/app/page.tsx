@@ -11,7 +11,7 @@ export default function Home() {
         <h1 className="text-9xl sm:text-6xl font-extrabold tracking-tight text-gray-800 drop-shadow-lg text-center">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500
                            transition-all duration-500 hover:from-pink-400 hover:via-purple-500 hover:to-blue-400
-                           hover:scale-105 hover:animate-bounce cursor-default">
+                           hover:scale-105 hover:animate-bounce ">
             Posts
           </span>
           <br />

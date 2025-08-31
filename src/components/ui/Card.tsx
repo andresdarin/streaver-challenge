@@ -1,6 +1,5 @@
 import { User } from "lucide-react";
 import { Post } from "../../types/post";
-import { get } from "lodash";
 
 interface PostCardProps {
     post: Post;
