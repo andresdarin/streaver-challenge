@@ -6,8 +6,21 @@
 
 
 :root {
+  /* Paleta primaria pastel */
+  --color-primary-1: #cdb4db; /* lavanda */
+  --color-primary-2: #ffc8dd; /* rosa pastel */
+  --color-primary-3: #b5ead7; /* verde menta */
+  --color-primary-4: #fef9c3; /* amarillo crema */
 
+  /* Colores de texto */
+  --color-text: #333333;
+  --color-text-light: #f5f5f5;
+
+  /* Fondos y contenedores */
+  --background: linear-gradient(135deg, var(--color-primary-1), var(--color-primary-2), var(--color-primary-3), var(--color-primary-4));
+  --container-bg: rgba(30,30,30,0.6); /* para contenedores oscuros */
 }
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -34,3 +47,25 @@ body {
     -moz-appearance: textfield;
   }
 }
+
+#__next {
+  @apply min-h-screen flex flex-col;
+
+  /* Gradiente pastel dinámico */
+  background: linear-gradient(135deg, var(--color-primary-1), var(--color-primary-2), var(--color-primary-3), var(--color-primary-4));
+  background-size: 400% 400%;
+
+  /* Animación suave */
+  animation: gradientMove 15s ease infinite;
+
+  /* Suaviza el contenido */
+  backdrop-filter: blur(1px);
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+

@@ -21,11 +21,14 @@ export default function Posts() {
     const showLoading = useDelayedLoading(isLoading, 500);
 
     return (
-        <main className="max-w-5xl mx-auto p-4 ">
-            <div className="border rounded p-4 shadow mb-4 group w-full">
+        <main className="max-w-5xl mx-auto p-4  m-10 p-10 ">
+            <div className=" rounded p-4 shadow mb-4 group w-full bg-gradient-to-r from-green-100 via-blue-50 to-orange-100">
                 <h1 className="text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500
                            transition-all duration-500 cursor-default hover:from-pink-400 hover:via-purple-500 hover:to-blue-400
                            hover:scale-105">Posts</h1>
+                <p className="text-center text-gray-700 dark:text-gray-400 mt-1">
+                    Explora los posts más interesantes y descubre contenido nuevo cada día.
+                </p>
 
 
                 <form className="w-full p-4 flex justify-center">
@@ -36,9 +39,15 @@ export default function Posts() {
                         placeholder="Filtrar por userId..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full p-4 text-sm text-gray-200 placeholder-gray-400 bg-gray-250/50 rounded-xl border border-gray-700 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 hover:brightness-110"
+                        className="w-full p-4 text-sm text-gray-200 placeholder-gray-400 bg-gray-250/50 rounded-xl border border-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 hover:brightness-110"
                     />
                 </form>
+
+                {posts && posts.length > 0 && (
+                    <p className="text-center text-gray-900 dark:text-gray-300 mt-2 font-medium">
+                        {posts.length} posts
+                    </p>
+                )}
             </div>
 
             {showLoading && (
