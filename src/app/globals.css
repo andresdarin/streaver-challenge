@@ -6,19 +6,20 @@
 
 
 :root {
-  /* Paleta primaria pastel */
-  --color-primary-1: #cdb4db; /* lavanda */
-  --color-primary-2: #ffc8dd; /* rosa pastel */
-  --color-primary-3: #b5ead7; /* verde menta */
-  --color-primary-4: #fef9c3; /* amarillo crema */
+/* Paleta primaria pastel */
+--color-primary-1: #A78BFA; /* morado pastel */
+--color-primary-2: #F9A8D4; /* rosa suave */
+--color-primary-3: #38BDF8; /* cian pastel */
+--color-primary-4: #60A5FA; /* azul claro */
 
-  /* Colores de texto */
-  --color-text: #333333;
-  --color-text-light: #f5f5f5;
+/* Colores de texto */
+--color-text: #333333;
+--color-text-light: #f5f5f5;
 
-  /* Fondos y contenedores */
-  --background: linear-gradient(135deg, var(--color-primary-1), var(--color-primary-2), var(--color-primary-3), var(--color-primary-4));
-  --container-bg: rgba(30,30,30,0.6); /* para contenedores oscuros */
+/* Fondos y contenedores */
+--background: linear-gradient(135deg, var(--color-primary-1), var(--color-primary-2), var(--color-primary-3), var(--color-primary-4));
+--container-bg: rgba(30,30,30,0.6); /* para contenedores oscuros */
+
 }
 
 
@@ -56,7 +57,7 @@ body {
   background-size: 400% 400%;
 
   /* Animación suave */
-  animation: gradientMove 15s ease infinite;
+  animation: gradientMove 10s ease infinite;
 
   /* Suaviza el contenido */
   backdrop-filter: blur(1px);
