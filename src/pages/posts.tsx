@@ -1,4 +1,3 @@
-"use client";
 import useSWR from "swr";
 import { Post } from "@/types/post";
 import { fetchPosts } from "@/services/postsService";
@@ -27,7 +26,7 @@ export default function Posts() {
                            transition-all duration-500 cursor-default hover:from-pink-400 hover:via-purple-500 hover:to-blue-400
                            hover:scale-105">Posts X-plorer</h1>
                 <p className="text-center text-gray-700 dark:text-gray-400 mt-1">
-                    Explora los posts más interesantes y descubre contenido nuevo cada día.
+                    Check out the most interesting posts and daily discoveries.
                 </p>
 
 
@@ -48,14 +47,27 @@ export default function Posts() {
                     <>
                         {debouncedUserId ? (
                             <p className="w-full pb-3 text-center text-red-500 dark:text-red-400 mt-2 font-medium">
-                                No se encontraron posts para este usuario.
+                                Looks like this user hasn’t posted anything.
                             </p>
                         ) : (
                             <p className="w-full pb-3 text-center text-red-500 dark:text-red-400 mt-2 font-medium">
-                                No hay posts disponibles.
+                                No posts to show yet.
                             </p>
                         )}
                     </>
+                )}
+
+                {showLoading && (
+                    <div>
+                        <p className="w-full pb-3 text-center text-gray-800 mt-2 font-medium">
+                            Almost there… your feed will be ready soon!
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                            {Array.from({ length: 6 }).map((_, i) => (
+                                <div key={i} className="h-40 bg-gray-200 animate-pulse rounded-xl"></div>
+                            ))}
+                        </div>
+                    </div>
                 )}
 
 
@@ -65,12 +77,6 @@ export default function Posts() {
                     </p>
                 )}
             </div>
-
-            {showLoading && (
-                <p className="text-yellow-600 text-center mb-4">
-                    Las solicitudes están tardando más de lo esperado...
-                </p>
-            )}
 
             {error && <p className="text-red-500 text-center mb-4">{error.message}</p>}
 
