@@ -8,14 +8,17 @@ export default function Home() {
                       transition-all duration-500 hover:bg-gray-200/40  hover:translate-y-1">
 
         {/* Título con microinteracción */}
-        <h1 className="text-9xl sm:text-6xl font-extrabold tracking-tight text-gray-900 drop-shadow-lg text-center">
+        <h1 className="text-9xl sm:text-6xl font-extrabold tracking-tight text-gray-800 drop-shadow-lg text-center">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500
                            transition-all duration-500 hover:from-pink-400 hover:via-purple-500 hover:to-blue-400
                            hover:scale-105 hover:animate-bounce">
             Posts
           </span>
           <br />
-          X-plorer
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500
+                           transition-all duration-500 hover:from-pink-400 hover:via-purple-500 hover:to-blue-400
+                           hover:scale-105 hover:animate-bounce">X</span>
+          -plorer
         </h1>
 
         {/* Párrafo con microinteracción en keywords */}

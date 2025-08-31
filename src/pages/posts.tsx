@@ -22,49 +22,22 @@ export default function Posts() {
 
     return (
         <main className="max-w-5xl mx-auto p-4 ">
-            <h1 className="text-7xl font-bold mb-6 text-center">Posts</h1>
+            <div className="border rounded p-4 shadow mb-4 group w-full">
+                <h1 className="text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500
+                           transition-all duration-500 cursor-default hover:from-pink-400 hover:via-purple-500 hover:to-blue-400
+                           hover:scale-105">Posts</h1>
 
-            <div className="mb-8 p-4 flex justify-center">
-                <form className="w-full max-w-xl">
-                    <label
-                        htmlFor="user-search"
-                        className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-                    >
-                        Filtrar por userId
-                    </label>
-                    <div className="relative">
-                        {/* Icono lupa */}
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg
-                                className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                                />
-                            </svg>
-                        </div>
 
-                        {/* Input controlado */}
-                        <input
-                            type="number"
-                            id="user-search"
-                            placeholder="Filtrar por userId..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 
-                   rounded-lg focus:ring-blue-500 focus:border-blue-500
-                    dark:border-gray-600 dark:placeholder-gray-400 
-                   dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        />
-                    </div>
+                <form className="w-full p-4 flex justify-center">
+                    <label htmlFor="user-search" className="sr-only">Filtrar por userId</label>
+                    <input
+                        type="number"
+                        id="user-search"
+                        placeholder="Filtrar por userId..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full p-4 text-sm text-gray-200 placeholder-gray-400 bg-gray-250/50 rounded-xl border border-gray-700 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 hover:brightness-110"
+                    />
                 </form>
             </div>
 
