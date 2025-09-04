@@ -1,11 +1,10 @@
 /*
-
-  En Next.js, cuando usás el Pages Router (carpeta "pages"), 
+  En Next.js, cuando usás el Pages Router, 
   este archivo se ejecuta **en todos los pages** antes de renderizar cualquier componente.
   Es el entry point global de tu aplicación para pages-router.
 
   Aquí es donde **importamos los estilos globales** como Tailwind,
-  porque sin este import, las clases NOO se aplican en tus pages.
+  porque sin este import, las clases NOO se aplican en las pages.
 
   Estructura típica:
   
@@ -21,5 +20,5 @@ import type { AppProps } from "next/app";
 import "../app/globals.css"; // Importa Tailwind aquí
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-    return <Component {...pageProps} />;
+  return <Component {...pageProps} />;
 }
