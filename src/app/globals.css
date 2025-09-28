@@ -48,7 +48,7 @@ body {
     -moz-appearance: textfield;
   }
 }
-
+,
 #__next {
   @apply min-h-screen flex flex-col;
 

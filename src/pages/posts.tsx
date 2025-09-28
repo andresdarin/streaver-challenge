@@ -96,7 +96,7 @@ export default function Posts() {
                 {error && <p className="text-red-500 text-center mb-4">{error.message}</p>}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {posts?.map((post, index) => (
+                    {posts?.map((post) => (
                         <div
                             key={post.id}
                             className="break-inside-avoid"
